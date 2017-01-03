@@ -33,6 +33,7 @@ public class SandboxActivity extends AppCompatActivity {
 
         final Activity activity = this;
 
+        loginButton.setReadPermissions("public_profile");
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
