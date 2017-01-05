@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -32,6 +34,12 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.profile_image)
     CircleImageView mCircleImageView;
 
+    @BindView(R.id.nameTextView)
+    TextView mNameTextView;
+
+    @BindView(R.id.tool_bar)
+    Toolbar mToolbar;
+
     AccessToken mAccessToken;
 
     HomeActivityHelper mHomeActivityHelper;
@@ -39,9 +47,13 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sandbox_detail);
+        setContentView(R.layout.activity_home);
 
         ButterKnife.bind(this);
+
+        // ツールバーをアクションバーとして使う
+        mToolbar.setTitle("ホーム");
+        setSupportActionBar(mToolbar);
 
         Intent intent = getIntent();
         mAccessToken = (AccessToken) intent.getParcelableExtra("accesstoken");
@@ -62,10 +74,18 @@ public class HomeActivity extends AppCompatActivity {
                                 .load(url)
                                 .fitCenter()
                                 .into(mCircleImageView);
+                        String name = json.getString("name");
+                        mNameTextView.setText(name);
                     } catch (Exception e) {
                         Log.d("hoge", e.getMessage());
                     }
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_home, menu);
+        return true;
     }
 }

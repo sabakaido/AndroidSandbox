@@ -14,7 +14,7 @@ import rx.schedulers.Schedulers;
  */
 
 public class HomeActivityHelper {
-    final private String mePath = "/v2.5/me?fields=id,name,picture";
+    final private String mePath = "/v2.5/me?fields=id,name,picture&locale=ja_JP";
 
     public Single<GraphResponse> getProfile(AccessToken accessToken) {
         final GraphRequest graphRequest = new GraphRequest(accessToken, mePath);
