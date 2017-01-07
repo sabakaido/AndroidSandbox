@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -15,6 +16,7 @@ import com.example.anikaido.sandbox.R;
 import com.example.anikaido.sandbox.ui.helper.HomeActivityHelper;
 import com.facebook.AccessToken;
 import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
 
 import org.json.JSONObject;
 
@@ -86,6 +88,18 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                LoginManager.getInstance().logOut();
+                Intent intent = new Intent(this, SandboxActivity.class);
+                startActivity(intent);
+                finish();
+        }
         return true;
     }
 }
