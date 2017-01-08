@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -13,12 +15,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.anikaido.sandbox.R;
+import com.example.anikaido.sandbox.ui.adapter.HomeRecyclerViewAdapter;
 import com.example.anikaido.sandbox.ui.helper.HomeActivityHelper;
 import com.facebook.AccessToken;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +47,9 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.tool_bar)
     Toolbar mToolbar;
 
+    @BindView(R.id.recyclerView)
+    RecyclerView mRecyclerView;
+
     AccessToken mAccessToken;
 
     HomeActivityHelper mHomeActivityHelper;
@@ -61,26 +69,43 @@ public class HomeActivity extends AppCompatActivity {
         mAccessToken = (AccessToken) intent.getParcelableExtra("accesstoken");
         mAccessTokenTextView.setText(mAccessToken.getToken());
 
-        mHomeActivityHelper = new HomeActivityHelper();
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
+        ArrayList<String> data = new ArrayList<>();
+        data.add("A");
+        data.add("B");
+        data.add("C");
+        data.add("D");
+        data.add("E");
+        data.add("F");
+        data.add("G");
+
+        HomeRecyclerViewAdapter adapter = new HomeRecyclerViewAdapter(this, data);
+        mRecyclerView.setAdapter(adapter);
+
+        mHomeActivityHelper = new HomeActivityHelper();
+        setProfile();
+    }
+
+    private void setProfile() {
         final Activity activity = this;
         mHomeActivityHelper.getProfile(mAccessToken).subscribe(new Action1<GraphResponse>() {
             @Override
             public void call(GraphResponse graphResponse) {
                 mAccessTokenTextView.setText(graphResponse.getRawResponse());
 
-                    try {
-                        JSONObject json = new JSONObject(graphResponse.getRawResponse());
-                        String url = json.getJSONObject("picture").getJSONObject("data").getString("url");
-                        Glide.with(activity)
-                                .load(url)
-                                .fitCenter()
-                                .into(mCircleImageView);
-                        String name = json.getString("name");
-                        mNameTextView.setText(name);
-                    } catch (Exception e) {
-                        Log.d("hoge", e.getMessage());
-                    }
+                try {
+                    JSONObject json = new JSONObject(graphResponse.getRawResponse());
+                    String url = json.getJSONObject("picture").getJSONObject("data").getString("url");
+                    Glide.with(activity)
+                            .load(url)
+                            .fitCenter()
+                            .into(mCircleImageView);
+                    String name = json.getString("name");
+                    mNameTextView.setText(name);
+                } catch (Exception e) {
+                    Log.d("hoge", e.getMessage());
+                }
             }
         });
     }
