@@ -14,9 +14,8 @@ import com.facebook.login.widget.LoginButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class SandboxActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     CallbackManager callbackManager;
 
     @BindView(R.id.login_button)
@@ -25,12 +24,15 @@ public class SandboxActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sandbox);
+        setContentView(R.layout.activity_login);
 
         ButterKnife.bind(this);
-
         callbackManager = CallbackManager.Factory.create();
 
+        setupLoginButton();
+    }
+
+    private void setupLoginButton() {
         final Activity activity = this;
 
         loginButton.setReadPermissions("public_profile");
@@ -58,12 +60,6 @@ public class SandboxActivity extends AppCompatActivity {
                 System.out.print("hogehoge");
             }
         });
-    }
-
-    @OnClick(R.id.sandboxButton)
-    void goDetail() {
-        Intent intent = new Intent(this, SandboxDetailActivity.class);
-        startActivity(intent);
     }
 
     @Override

@@ -96,7 +96,7 @@ public class HomeActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_logout:
                 LoginManager.getInstance().logOut();
-                Intent intent = new Intent(this, SandboxActivity.class);
+                Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 finish();
         }
