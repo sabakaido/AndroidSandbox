@@ -7,39 +7,6 @@
     android:layout_height="match_parent"
     android:background="#FFE3E3E3">
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal">-->
-
-        <!--<de.hdodenhof.circleimageview.CircleImageView-->
-            <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-            <!--android:id="@+id/profile_image"-->
-            <!--android:layout_width="80dp"-->
-            <!--android:layout_height="80dp"-->
-            <!--android:layout_marginRight="16dp"-->
-            <!--app:civ_border_width="2dp"-->
-            <!--app:civ_border_color="#FFFFFFFF" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/nameTextView"-->
-            <!--android:textSize="24sp"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:gravity="center" />-->
-    <!--</LinearLayout>-->
-
-    <!--<fragment-->
-        <!--android:id="@+id/fragment_sandbox"-->
-        <!--android:name="com.example.anikaido.sandbox.ui.SandboxFragment"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/accessTokenTextView"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
-
     <LinearLayout
         android:id="@+id/content_frame"
         android:orientation="vertical"

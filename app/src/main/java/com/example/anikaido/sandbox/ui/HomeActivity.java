@@ -38,9 +38,6 @@ import rx.functions.Action1;
  */
 
 public class HomeActivity extends AppCompatActivity {
-//    @BindView(R.id.accessTokenTextView)
-//    TextView mAccessTokenTextView;
-
     @BindView(R.id.profile_image)
     CircleImageView mCircleImageView;
 
@@ -75,7 +72,6 @@ public class HomeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         mAccessToken = (AccessToken) intent.getParcelableExtra("accesstoken");
-//        mAccessTokenTextView.setText(mAccessToken.getToken());
 
         mHomeActivityHelper = new HomeActivityHelper();
 
@@ -96,7 +92,6 @@ public class HomeActivity extends AppCompatActivity {
         };
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        // getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     /**
@@ -122,8 +117,6 @@ public class HomeActivity extends AppCompatActivity {
         mHomeActivityHelper.getProfile(mAccessToken).subscribe(new Action1<GraphResponse>() {
             @Override
             public void call(GraphResponse graphResponse) {
-//                mAccessTokenTextView.setText(graphResponse.getRawResponse());
-
                 try {
                     JSONObject json = new JSONObject(graphResponse.getRawResponse());
                     String url = json.getJSONObject("picture").getJSONObject("data").getString("url");
