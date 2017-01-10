@@ -19,12 +19,18 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
 
     private LayoutInflater mLayoutInflater;
     private Context mContext;
-    private ArrayList<String> mData;
+    public ArrayList<String> mData;
+    private OnRecyclerListener mListener;
 
-    public HomeRecyclerViewAdapter(Context context, ArrayList<String> data) {
+    public interface OnRecyclerListener {
+        void onRecyclerClicked(View v, int position);
+    }
+
+    public HomeRecyclerViewAdapter(Context context, ArrayList<String> data, OnRecyclerListener listener) {
         mLayoutInflater = LayoutInflater.from(context);
         mContext = context;
         mData = data;
+        mListener = listener;
     }
 
     @Override
@@ -33,10 +39,17 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         if (mData != null && mData.size() > 0 && mData.get(position) != null) {
             holder.mTextView.setText(mData.get(position));
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.onRecyclerClicked(view, position);
+            }
+        });
     }
 
     @Override

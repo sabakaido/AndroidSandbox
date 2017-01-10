@@ -37,7 +37,8 @@ import rx.functions.Action1;
  * Created by anikaido on 2016/12/31.
  */
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements HomeRecyclerViewAdapter.OnRecyclerListener {
+
     @BindView(R.id.profile_image)
     CircleImageView mCircleImageView;
 
@@ -56,6 +57,8 @@ public class HomeActivity extends AppCompatActivity {
     AccessToken mAccessToken;
 
     HomeActivityHelper mHomeActivityHelper;
+
+    HomeRecyclerViewAdapter mAdapter;
 
     private ActionBarDrawerToggle mDrawerToggle;
 
@@ -77,7 +80,6 @@ public class HomeActivity extends AppCompatActivity {
 
         setupRecyclerViewContent();
         setProfile();
-
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close) {
             @Override
@@ -108,8 +110,8 @@ public class HomeActivity extends AppCompatActivity {
         data.add("F");
         data.add("G");
 
-        HomeRecyclerViewAdapter adapter = new HomeRecyclerViewAdapter(this, data);
-        mRecyclerView.setAdapter(adapter);
+        mAdapter= new HomeRecyclerViewAdapter(this, data, this);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     private void setProfile() {
@@ -149,5 +151,13 @@ public class HomeActivity extends AppCompatActivity {
                 finish();
         }
         return true;
+    }
+
+    @Override
+    public void onRecyclerClicked(View v, int position) {
+        // clickイベント
+        mAdapter.mData.get(position);
+        Intent intent = new Intent(this, DetailActivity.class);
+        startActivity(intent);
     }
 }
