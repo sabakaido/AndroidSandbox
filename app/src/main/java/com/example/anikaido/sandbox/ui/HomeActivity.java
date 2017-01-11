@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -158,6 +159,12 @@ public class HomeActivity extends AppCompatActivity implements HomeRecyclerViewA
         // clickイベント
         mAdapter.mData.get(position);
         Intent intent = new Intent(this, DetailActivity.class);
-        startActivity(intent);
+
+        ActivityOptionsCompat options = ActivityOptionsCompat.
+                makeSceneTransitionAnimation(this, v, mAdapter.mData.get(position));
+
+        intent.putExtra("transitionName", mAdapter.mData.get(position));
+
+        startActivity(intent, options.toBundle());
     }
 }
