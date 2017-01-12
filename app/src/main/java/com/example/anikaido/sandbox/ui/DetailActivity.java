@@ -15,7 +15,6 @@ import butterknife.ButterKnife;
 /**
  * Created by anikaido on 2017/01/10.
  */
-
 public class DetailActivity extends AppCompatActivity {
 
     @BindView(R.id.tool_bar)
