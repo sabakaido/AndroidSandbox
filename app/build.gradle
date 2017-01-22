@@ -50,5 +50,8 @@ dependencies {
     // glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
 
+    // star
+    compile 'com.github.jd-alexander:LikeButton:0.2.0'
+
     testCompile 'junit:junit:4.12'
 }

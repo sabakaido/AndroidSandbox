@@ -39,7 +39,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         if (mData != null && mData.size() > 0 && mData.get(position) != null) {
             holder.mTextView.setText(mData.get(position));
         }
