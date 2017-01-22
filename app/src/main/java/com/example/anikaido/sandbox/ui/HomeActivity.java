@@ -95,6 +95,10 @@ public class HomeActivity extends AppCompatActivity implements HomeRecyclerViewA
         };
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
     }
 
     /**
