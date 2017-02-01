@@ -41,11 +41,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
                 Intent intent = new Intent(activity, HomeActivity.class);
 
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("accesstoken", loginResult.getAccessToken());
-
-                intent.putExtras(bundle);
-
                 startActivity(intent);
                 finish();
             }

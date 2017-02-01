@@ -75,8 +75,7 @@ public class HomeActivity extends AppCompatActivity implements HomeRecyclerViewA
         mToolbar.setTitle("ホーム");
         setSupportActionBar(mToolbar);
 
-        Intent intent = getIntent();
-        mAccessToken = (AccessToken) intent.getParcelableExtra("accesstoken");
+        mAccessToken = AccessToken.getCurrentAccessToken();
 
         mHomeActivityHelper = new HomeActivityHelper();
 
