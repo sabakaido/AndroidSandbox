@@ -1,6 +1,7 @@
 package com.example.anikaido.sandbox.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +35,9 @@ public class ProfileActivity extends AppCompatActivity {
     @BindView(R.id.tool_bar)
     Toolbar mToolbar;
 
+    @BindView(R.id.profileAvatar)
+    ImageView mAvatarImage;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +48,19 @@ public class ProfileActivity extends AppCompatActivity {
 
         mToolbar.setTitle("プロフィール");
 
+        Intent intent = getIntent();
+        String avatar = intent.getStringExtra("avatarUrl");
+
         final Activity activity = this;
+
+        Glide.with(this)
+                .load(avatar)
+                .fitCenter()
+                .into(mAvatarImage);
+
+        String transitionName = "avatar";
+        mAvatarImage.setTransitionName(transitionName);
+
         mProfileActivityHelper.getCover(AccessToken.getCurrentAccessToken()).subscribe(new Action1<GraphResponse>() {
 
             @Override

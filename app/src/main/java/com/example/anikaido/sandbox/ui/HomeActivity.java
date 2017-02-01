@@ -56,6 +56,7 @@ public class HomeActivity extends AppCompatActivity implements HomeRecyclerViewA
     @BindView(R.id.home_drawer)
     DrawerLayout mDrawerLayout;
 
+    String mAvatarUrl;
     AccessToken mAccessToken;
 
     HomeActivityHelper mHomeActivityHelper;
@@ -95,7 +96,6 @@ public class HomeActivity extends AppCompatActivity implements HomeRecyclerViewA
         };
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.addDrawerListener(mDrawerToggle);
@@ -121,14 +121,15 @@ public class HomeActivity extends AppCompatActivity implements HomeRecyclerViewA
 
     private void setProfile() {
         final Activity activity = this;
+
         mHomeActivityHelper.getProfile(mAccessToken).subscribe(new Action1<GraphResponse>() {
             @Override
             public void call(GraphResponse graphResponse) {
                 try {
                     JSONObject json = new JSONObject(graphResponse.getRawResponse());
-                    String url = json.getJSONObject("picture").getJSONObject("data").getString("url");
+                    mAvatarUrl = json.getJSONObject("picture").getJSONObject("data").getString("url");
                     Glide.with(activity)
-                            .load(url)
+                            .load(mAvatarUrl)
                             .fitCenter()
                             .into(mCircleImageView);
                     String name = json.getString("name");
@@ -161,7 +162,6 @@ public class HomeActivity extends AppCompatActivity implements HomeRecyclerViewA
     @Override
     public void onRecyclerClicked(View v, int position) {
         // clickイベント
-        mAdapter.mData.get(position);
         Intent intent = new Intent(this, DetailActivity.class);
 
         ActivityOptionsCompat options = ActivityOptionsCompat.
@@ -180,9 +180,15 @@ public class HomeActivity extends AppCompatActivity implements HomeRecyclerViewA
     }
 
     @OnClick(R.id.profile_image)
-    public void gotoProfile() {
+    public void gotoProfile(View v) {
         Intent intent = new Intent(this, ProfileActivity.class);
 
-        startActivity(intent);
+        String transitionName = "avatar";
+        ActivityOptionsCompat options = ActivityOptionsCompat.
+                makeSceneTransitionAnimation(this, v, transitionName);
+
+        intent.putExtra("avatarUrl", mAvatarUrl);
+
+        startActivity(intent, options.toBundle());
     }
 }
