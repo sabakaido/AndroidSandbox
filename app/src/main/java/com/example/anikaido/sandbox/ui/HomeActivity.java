@@ -31,6 +31,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import rx.functions.Action1;
 
@@ -170,5 +171,19 @@ public class HomeActivity extends AppCompatActivity implements HomeRecyclerViewA
         intent.putExtra("transitionName", mAdapter.mData.get(position));
 
         startActivity(intent, options.toBundle());
+    }
+
+    @OnClick(R.id.favoriteButton)
+    public void gotoFavoriteButton() {
+        Intent intent = new Intent(this, FavoriteActivity.class);
+
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.profile_image)
+    public void gotoProfile() {
+        Intent intent = new Intent(this, ProfileActivity.class);
+
+        startActivity(intent);
     }
 }

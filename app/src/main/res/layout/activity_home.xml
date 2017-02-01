@@ -72,6 +72,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center" />
+
+        <Button
+            android:id="@+id/favoriteButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="お気に入り" />
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

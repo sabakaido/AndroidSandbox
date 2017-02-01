@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.anikaido.sandbox.R;
+import com.like.LikeButton;
 
 import java.util.ArrayList;
 
@@ -50,6 +51,70 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
                 mListener.onRecyclerClicked(view, position);
             }
         });
+
+        final LikeButton likeButton1 = (LikeButton) holder.itemView.findViewById(R.id.star_button1);
+        final LikeButton likeButton2 = (LikeButton) holder.itemView.findViewById(R.id.star_button2);
+        final LikeButton likeButton3 = (LikeButton) holder.itemView.findViewById(R.id.star_button3);
+        final LikeButton likeButton4 = (LikeButton) holder.itemView.findViewById(R.id.star_button4);
+        final LikeButton likeButton5 = (LikeButton) holder.itemView.findViewById(R.id.star_button5);
+
+        likeButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearLikeButton(likeButton1, likeButton2, likeButton3, likeButton4, likeButton5);
+                likeButton1.onClick(likeButton1);
+            }
+        });
+
+        likeButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearLikeButton(likeButton1, likeButton2, likeButton3, likeButton4, likeButton5);
+                likeButton1.onClick(likeButton1);
+                likeButton2.onClick(likeButton2);
+            }
+        });
+
+        likeButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearLikeButton(likeButton1, likeButton2, likeButton3, likeButton4, likeButton5);
+                likeButton1.onClick(likeButton1);
+                likeButton2.onClick(likeButton2);
+                likeButton3.onClick(likeButton3);
+            }
+        });
+
+        likeButton4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearLikeButton(likeButton1, likeButton2, likeButton3, likeButton4, likeButton5);
+                likeButton1.onClick(likeButton1);
+                likeButton2.onClick(likeButton2);
+                likeButton3.onClick(likeButton3);
+                likeButton4.onClick(likeButton4);
+            }
+        });
+
+        likeButton5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearLikeButton(likeButton1, likeButton2, likeButton3, likeButton4, likeButton5);
+                likeButton1.onClick(likeButton1);
+                likeButton2.onClick(likeButton2);
+                likeButton3.onClick(likeButton3);
+                likeButton4.onClick(likeButton4);
+                likeButton5.onClick(likeButton5);
+            }
+        });
+    }
+
+    private void clearLikeButton(LikeButton l1, LikeButton l2, LikeButton l3, LikeButton l4, LikeButton l5) {
+        l1.setLiked(false);
+        l2.setLiked(false);
+        l3.setLiked(false);
+        l4.setLiked(false);
+        l5.setLiked(false);
     }
 
     @Override
