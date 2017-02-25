@@ -189,6 +189,6 @@ public class HomeActivity extends AppCompatActivity implements HomeRecyclerViewA
 
         intent.putExtra("avatarUrl", mAvatarUrl);
 
-        startActivity(intent, options.toBundle());
+        startActivity(intent);
     }
 }

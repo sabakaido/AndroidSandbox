@@ -56,13 +56,13 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.example.anikaido.sandbox.ui.view.MyCircleImageView
         android:id="@+id/profileAvatar"
         android:layout_margin="@dimen/activity_horizontal_margin"
+        android:scaleType="centerCrop"
+        app:backgroundTint="@color/colorPrimary"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#FFFFFFFF"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|right|end" />
 

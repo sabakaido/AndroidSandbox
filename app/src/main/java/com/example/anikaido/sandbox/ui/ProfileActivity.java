@@ -55,11 +55,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         Glide.with(this)
                 .load(avatar)
-                .fitCenter()
+                .centerCrop()
                 .into(mAvatarImage);
 
-        String transitionName = "avatar";
-        mAvatarImage.setTransitionName(transitionName);
+//        String transitionName = "avatar";
+//        mAvatarImage.setTransitionName(transitionName);
 
         mProfileActivityHelper.getCover(AccessToken.getCurrentAccessToken()).subscribe(new Action1<GraphResponse>() {
 
