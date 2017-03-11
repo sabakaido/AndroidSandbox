@@ -181,6 +181,8 @@ public class HomeActivity extends AppCompatActivity implements HomeRecyclerViewA
 
     @OnClick(R.id.profile_image)
     public void gotoProfile(View v) {
+        mDrawerLayout.closeDrawers();
+
         Intent intent = new Intent(this, ProfileActivity.class);
 
         String transitionName = "avatar";
@@ -189,6 +191,6 @@ public class HomeActivity extends AppCompatActivity implements HomeRecyclerViewA
 
         intent.putExtra("avatarUrl", mAvatarUrl);
 
-        startActivity(intent);
+        startActivity(intent, options.toBundle());
     }
 }
